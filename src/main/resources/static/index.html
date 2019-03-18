@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calculator</title>
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+<section>
+    <h1>Calculator</h1>
+    <div>
+        <input id="value1">
+        <input id="value2">
+
+        <button onclick="sendplus()">+</button>
+        <button onclick="sendminus()">-</button>
+        <button onclick="sendtimes()">*</button>
+        <button onclick="senddiv()">/</button>
+
+        <div id="display-response">결과</div>
+
+        <script>
+            function sendplus() {
+                var value1 = $("#value1").val();
+                var value2 = $("#value2").val();
+
+                $.ajax({
+                    url: '/math/' + value1+"/"+value2+"/"+"+",
+                    type: 'GET',
+                    async: true,
+                    success: function (response) {
+                        $('#display-response').html(JSON.stringify(response));
+                    },
+                    error: function (err) {
+                        $('#display-response').html(JSON.stringify(err));
+                    }
+                });
+            }
+
+            function sendminus() {
+                var value1 = $("#value1").val();
+                var value2 = $("#value2").val();
+
+                $.ajax({
+                    url: '/math/' + value1+"/"+value2+"/"+"-",
+                    type: 'GET',
+                    async: true,
+                    success: function (response) {
+                        $('#display-response').html(JSON.stringify(response));
+                    },
+                    error: function (err) {
+                        $('#display-response').html(JSON.stringify(err));
+                    }
+                });
+            }
+
+            function sendtimes() {
+                var value1 = $("#value1").val();
+                var value2 = $("#value2").val();
+
+                $.ajax({
+                    url: '/math/' + value1+"/"+value2+"/"+"*",
+                    type: 'GET',
+                    async: true,
+                    success: function (response) {
+                        $('#display-response').html(JSON.stringify(response));
+                    },
+                    error: function (err) {
+                        $('#display-response').html(JSON.stringify(err));
+                    }
+                });
+            }
+
+            function senddiv() {
+                var value1 = $("#value1").val();
+                var value2 = $("#value2").val();
+
+                $.ajax({
+                    url: '/math/' + value1+"/"+value2+"/"+"div",
+                    type: 'GET',
+                    async: true,
+                    success: function (response) {
+                        $('#display-response').html(JSON.stringify(response));
+                    },
+                    error: function (err) {
+                        $('#display-response').html(JSON.stringify(err));
+                    }
+                });
+
+            }
+        </script>
+    </div>
+</section>
+</body>
+</html>
